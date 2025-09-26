@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>INTERCONNECTED</title>
+
+
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A platform to connect and interact with people globally .">
+    <meta name="keywords" content="interconnected, global interaction, connect, social platform">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="server.js">
+   
+</head>
+<body>
+   
+    <h1 style="color: white;"><big>Welcome to INTERCONNECTED</big></h1>
+    <h3 style="color: white;">Interact with those across the globe!</h3>
+
+
+<br>
+<br>
+
+
+<div>
+    <div class="container">
+        <div class="entryarea">
+            <input type="text" class="inputname" id="name" required>
+            <div class="labelline">Enter name</div>
+        </div>
+    </div>
+</div>
+
+
+ 
+</P>
+
+
+        <!-- http://127.0.0.1:5500/progress/chat.html aka. chat.html -->
+
+
+<button id="find" style="font-family: 'Courier New', Courier, monospace; font-size: 20px;" class="button1" onclick="window.location.href='chat.html' ">PAIR UP!</button>
+<p><img style="width: 8%; margin: 100px;" src="loading.gif" id="loading" alt=""></p>
+
+<script src="/socket.io/socket.io.js">
+
+document.getElementById("loading").style.display="none"
+
+
+const socket=io();
+
+let name;
+document.getElementById("find").addEventListener("pressed",function(){
+   
+    name = document.getElementById("name").value
+
+    document.getElementById("user").inntertext=name
+
+    if(name==null || name==''){
+        alert("Please enter a name!")
+    }
+    else{
+        socket.emit("find",{name:name})
+
+	    document.getElementById("loading").style.display="block"
+        document.getElementById("find").disabled=true
+    }
+
+
+socket.on("find",(e)=>{
+    let chatMembers = e.chatMembersss
+    console.log(chatMembers)
+    document.getElementById("loading").style.display = "none"
+
+
+    var but = document.getElementById("but")
+    but.onclick = function(){
+        socket.emit("find", {but:but})
+   
+    return "pressed"
+    }
+
+})
+})
+
+
+
+</script>
+
+
+</body>
+</html>
