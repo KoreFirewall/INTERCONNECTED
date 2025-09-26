@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+body {
+    justify-content: center;
+    background-color: rgb(0                                                  , 0, 0);
+}
+</style>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="stylechat.css">
+  <link rel="stylesheet" href="server.js">
+
+</head>
+
+<h1 style="color: white; font-family: 'Courier New', Courier, monospace;">INTERCONNECTED</h1>
+
+<br>
+
+<br>
+
+<p><body class="bbodychat">
+  <div class="chat-container">
+    <div class="chat-box" id="chatBox"></div>
+    <div class="input-area">
+      <input class="inputmsg" type="text" id="chatInput" placeholder="Type a message..." autocomplete="off" style="border-radius: 0 0 0 8px;">
+      <button class="buttonsending" onclick="sendMessage()" style="border: 1.5px solid white; background-color: transparent; color: white; padding: 20px;">Send</button>
+    </div>
+  </div>
+
+</p>
+
+
+
+<script>
+    function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const chatBox = document.getElementById("chatBox");
+      const messageText = input.value.trim();
+
+      if (messageText !== "") {
+        const message = document.createElement("div");
+        message.className = "message";
+        message.textContent = messageText;
+        chatBox.appendChild(message);
+
+        // scroll to bottom
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        input.value = "";
+      }
+    }
+
+    // allow Enter key to send
+    document.getElementById("chatInput").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+
+
+
+</script>
+
+</body>
+</html>
